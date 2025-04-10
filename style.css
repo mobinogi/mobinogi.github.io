@@ -76,7 +76,30 @@ body {
     font-family: 'GmarketLight', Arial, sans-serif;
     font-size: 14px;
     color: #555;
-    margin-bottom: 10px;
+    margin: 10px 0;
+}
+
+/* 버튼 기본 스타일 */
+button {
+    padding: 10px 15px;
+    font-size: 16px;
+    background-color: #1e90ff;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    transition: transform 0.1s, background-color 0.2s;
+    outline: none;
+}
+
+/* 버튼 누를 때 눌리는 모션 */
+button:active {
+    transform: scale(0.95);
+}
+
+/* 토글 버튼 상태에 따라 배경색 변경 (선택 사항) */
+button:focus {
+    background-color: #0f78d1;
 }
 
 /* Footer 스타일 */
