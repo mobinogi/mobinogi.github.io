@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>마비노기 모바일 알람</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="logo"></div>
+  
+  <!-- Barrier 알람 섹션 -->
+  <div id="barrier-container" class="alarm-container">
+    <h2>Barrier 알람</h2>
+    <div id="barrier-status">대기 중</div>
+    <audio id="barrier-alarm-sound" src="barrier_alarm.wav" preload="auto"></audio>
+  </div>
+  
+  <!-- 필드보스 알람 섹션 -->
+  <div id="fieldboss-container" class="alarm-container">
+    <h2>필드보스 알람</h2>
+    <div id="fieldboss-status">대기 중</div>
+    <audio id="fieldboss-alarm-sound" src="fieldboss_alarm.wav" preload="auto"></audio>
+  </div>
+  
+  <footer class="footer">
+    <p>© 2024 Riverize. All Rights Reserved.</p>
+    <p>상단 로고 및 일부 이미지의 저작권은 해당 원작자에게 있습니다.</p>
+  </footer>
+  
+  <!-- 분리된 JS 파일들 로드 -->
+  <script src="barrier.js"></script>
+  <script src="fieldboss.js"></script>
+</body>
+</html>
