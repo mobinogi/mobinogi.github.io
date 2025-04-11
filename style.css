@@ -4,7 +4,7 @@ html, body {
     height: 100%;
     margin: 0;
     font-family: 'Gmarket', Arial, sans-serif;
-    background-image: url('back.png');
+    background-image: url('clear-white-plaster-texture-pattern.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -39,8 +39,8 @@ html, body {
         box-shadow: 
             0 -5px 10px rgba(255, 255, 255, 0.863), 
             -5px 0 10px rgba(255, 255, 255, 0.7),  
-            5px 5px 15px rgba(0, 0, 0, 0.123), 
-            0 5px 15px rgba(0, 0, 0, 0.144);
+            5px 5px 15px rgba(255, 255, 255, 0.863), 
+            0 5px 15px rgba(255, 255, 255, 0.7);
         transform: translateY(0); /* 제자리로 슬라이드 */
     }
 }
@@ -67,8 +67,8 @@ html, body {
     box-shadow: 
         0 -5px 10px rgba(255, 255, 255, 0.911),
         -5px 0 10px rgba(255, 255, 255, 0.692),
-        5px 5px 15px rgba(0, 0, 0, 0.87),
-        0 5px 15px rgb(0, 0, 0);
+        5px 5px 15px rgba(255, 255, 255, 0.863),
+        0 5px 15px rgb(255, 255, 255, 0.7);
     opacity: 0;  /* 초기엔 안 보이고 애니메이션으로 나타남 */
     animation: fadeInBox 1s ease-out forwards;
 }
