@@ -1,60 +1,76 @@
 // fieldboss.js
 document.addEventListener('DOMContentLoaded', function () {
-  // 필드보스의 출현시간은 12:00, 18:00, 20:00, 22:00
-  // 알람은 출현 3분 전인 11:57, 17:57, 19:57, 21:57에 울리도록 설정
-  const fieldBossAlarmTriggerTimes = [
-    { hour: 11, minute: 57 },  // 12:00 출현 3분 전
-    { hour: 17, minute: 57 },  // 18:00 출현 3분 전
-    { hour: 19, minute: 57 },  // 20:00 출현 3분 전
-    { hour: 21, minute: 57 }   // 22:00 출현 3분 전
+  // Fieldboss 알람 트리거 시간 (예: 12:00 출현 → 11:57, 18:00 → 17:57, 20:00 → 19:57, 22:00 → 21:57)
+  const fieldbossAlarmTriggerTimes = [
+    { hour: 11, minute: 57 },
+    { hour: 17, minute: 57 },
+    { hour: 19, minute: 57 },
+    { hour: 21, minute: 57 }
   ];
 
-  const fieldBossAlarmSound = document.getElementById('fieldboss-alarm-sound');
-  const fieldBossStatus = document.getElementById('fieldboss-status');
-  const toggleButton = document.getElementById('fieldboss-toggle');
+  const fieldbossAlarmSound = document.getElementById('fieldboss-alarm-sound');
+  const fieldbossStatus = document.getElementById('fieldboss-status');
+  const mainToggleButton = document.getElementById('fieldboss-toggle');
+  const optionsContainer = document.getElementById('fieldboss-options');
+  const soundSwitch = document.getElementById('fieldboss-sound-switch');
+  const popupSwitch = document.getElementById('fieldboss-popup-switch');
 
   let alarmActive = false;
   let intervalId;
 
   function updateStatus(message) {
-    if (fieldBossStatus) {
-      fieldBossStatus.innerText = message;
+    if (fieldbossStatus) {
+      fieldbossStatus.innerText = message;
     }
   }
 
-  // 매분 0초에 현재 시간이 trigger 시간과 일치하면 알람 재생
-  function checkAndTriggerFieldBossAlarm() {
+  function checkAndTriggerFieldbossAlarm() {
     const now = new Date();
     const currentHour = now.getHours();
     const currentMinute = now.getMinutes();
     const currentSecond = now.getSeconds();
 
-    // 매분 0초에만 체크하여 여러 번 울리는 것 방지
     if (currentSecond !== 0) return;
 
-    fieldBossAlarmTriggerTimes.forEach(function(time) {
+    fieldbossAlarmTriggerTimes.forEach(function(time) {
       if (currentHour === time.hour && currentMinute === time.minute) {
-        console.log(`필드보스 알람 울림 (3분 전): ${time.hour}:${(time.minute < 10 ? '0' : '') + time.minute}`);
-        if (fieldBossAlarmSound) {
-          fieldBossAlarmSound.currentTime = 0;
-          fieldBossAlarmSound.play().catch(error => {
-            console.error('필드보스 알람 소리 재생 오류:', error);
+        console.log(`Fieldboss 알람 울림 (3분 전): ${time.hour}:${(time.minute < 10 ? '0' : '') + time.minute}`);
+
+        if (soundSwitch.checked && fieldbossAlarmSound) {
+          fieldbossAlarmSound.currentTime = 0;
+          fieldbossAlarmSound.play().catch(function(error) {
+            console.error('Fieldboss 알람 소리 재생 오류:', error);
           });
         }
-        updateStatus('알람 울림: ' + now.toLocaleTimeString());
+
+        if (popupSwitch.checked) {
+          if (Notification && Notification.permission === "granted") {
+            new Notification("Fieldboss 알람", { body: "지정된 알람 시간입니다.", icon: "logo.png" });
+          } else {
+            alert("Fieldboss 알람: 지정된 알람 시간입니다.");
+          }
+        }
+        updateStatus("알람 울림: " + now.toLocaleTimeString());
       }
     });
   }
 
-  // 토글 버튼 클릭 시 활성화/비활성화 전환
-  toggleButton.addEventListener('click', function () {
+  mainToggleButton.addEventListener('click', function () {
     if (!alarmActive) {
       alarmActive = true;
-      toggleButton.innerText = "활성화";
-      intervalId = setInterval(checkAndTriggerFieldBossAlarm, 1000);
+      mainToggleButton.innerText = "전체 알람: 활성화";
+      updateStatus("알람 활성화됨: " + new Date().toLocaleTimeString());
+      optionsContainer.style.display = "block";
+      
+      if (popupSwitch.checked && Notification && Notification.permission !== "granted") {
+        Notification.requestPermission();
+      }
+      intervalId = setInterval(checkAndTriggerFieldbossAlarm, 1000);
     } else {
       alarmActive = false;
-      toggleButton.innerText = "비활성화";
+      mainToggleButton.innerText = "전체 알람: 비활성화";
+      updateStatus("알람 비활성화됨");
+      optionsContainer.style.display = "none";
       clearInterval(intervalId);
     }
   });
