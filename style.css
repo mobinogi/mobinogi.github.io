@@ -1,32 +1,33 @@
-/* 기존 로고 관련 CSS를 img 용도로 변경 */
-.logo {
-    display: block;
-    margin: 20px auto;  /* 중앙 정렬 */
-    /* width나 height를 명시하지 않으면 이미지의 원본 크기로 표시됩니다. */
-}
-
-/* 나머지 기존 스타일들은 그대로 유지 */
+/* 전체 레이아웃 설정 */
 html, body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    width: 100%;
     overflow: hidden;
+    height: 100%;
+    margin: 0;
     font-family: 'Gmarket', Arial, sans-serif;
-}
-
-body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
     background-image: url('clear-white-plaster-texture-pattern.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
+/* 폰트 설정 */
+@font-face {
+    font-family: 'Gmarket';
+    src: url('GmarketSansTTFBold.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'GmarketLight';
+    src: url('GmarketSansTTFLight.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* 박스 등장 애니메이션 */
 @keyframes fadeInBox {
     0% {
         opacity: 0;
@@ -38,67 +39,69 @@ body {
     }
 }
 
+/* 로고 스타일 (logo.png, 원본 크기로 표시) */
+/* 원래는 div로 배경 이미지 방식이었으나, img 태그로 사용해도 무방합니다. */
+.logo {
+    display: block;
+    margin-top: 20px;
+    margin-bottom: 40px;
+    background: url('logo.png') no-repeat center;
+    background-size: contain;
+    /* width, height를 지정하지 않으면 원본 크기로 표시됨 */
+}
+
+/* 알람 박스 스타일 (Barrier 및 Fieldboss 박스 동일 적용) */
 .alarm-container {
-    background-color: transparent;
-    padding: 15px 20px;
-    border-radius: 10px;
+    background-color: rgba(179, 179, 179, 0.178);  /* 투명한 배경 */
+    padding: 10px 20px;
+    border-radius: 9px;
     text-align: center;
-    width: 250px;
-    margin: 15px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
-    opacity: 0;
+    width: 230px;
+    margin-bottom: 30px;
+    box-shadow: 
+        0 -5px 10px rgba(255, 255, 255, 0.911),
+        -5px 0 10px rgba(255, 255, 255, 0.692),
+        5px 5px 15px rgba(0, 0, 0, 0.87),
+        0 5px 15px rgb(0, 0, 0);
+    opacity: 0;  /* 초기엔 안 보이고 애니메이션으로 나타남 */
     animation: fadeInBox 1s ease-out forwards;
 }
 
+/* 개별 컨테이너 애니메이션 딜레이 */
 #barrier-container {
-    animation-delay: 0.2s;
+    animation-delay: 0.2s; /* 배리어 박스 */
 }
 #fieldboss-container {
-    animation-delay: 0.5s;
+    animation-delay: 0.5s; /* 필드보스 박스 */
 }
 
-.alarm-container h2 {
-    margin: 0 0 10px;
-    font-family: 'Gmarket', Arial, sans-serif;
-    font-size: 20px;
-    color: #222;
-}
-
-.alarm-container div[id$="-status"] {
+/* 활성화/비활성화 토글 버튼 스타일 */
+button {
+    padding: 7px 16px;
+    background: linear-gradient(45deg, #194bca, #1e51d4);
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
     font-family: 'GmarketLight', Arial, sans-serif;
     font-size: 14px;
-    color: #555;
-    margin: 10px 0;
-}
-
-button {
-    padding: 10px 15px;
-    font-size: 16px;
-    background-color: #1e90ff;
-    border: none;
-    border-radius: 5px;
-    color: #fff;
-    cursor: pointer;
-    transition: transform 0.1s, background-color 0.2s;
-    outline: none;
+    line-height: 13px;
+    transition: transform 0.1s, background 0.3s;
+    margin-top: 10px;
 }
 
 button:active {
-    transform: scale(0.95);
+    transform: translateY(2px);
+    box-shadow: none;
 }
 
-button:focus {
-    background-color: #0f78d1;
-}
-
+/* Footer 스타일 */
 .footer {
-    margin-top: 30px;
-    font-family: 'GmarketLight', Arial, sans-serif;
-    font-size: 12px;
-    color: #333;
     text-align: center;
-}
-
-audio {
-    display: none;
+    margin-top: 30px;
+    padding: 10px;
+    background-color: transparent;
+    color: #333;
+    font-family: 'GmarketLight', Arial, sans-serif;
+    font-size: 10px;
 }
