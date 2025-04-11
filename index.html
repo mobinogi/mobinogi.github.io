@@ -7,12 +7,13 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="logo"></div>
+  <!-- 로고를 div에서 img 태그로 교체 -->
+  <img class="logo" src="logo.png" alt="Logo">
   
   <!-- Barrier 알람 섹션 -->
   <div id="barrier-container" class="alarm-container">
     <h2>Barrier 알람</h2>
-    <!-- 토글 버튼: 초기 상태는 알람 비활성화 -->
+    <!-- 토글 버튼: 초기 상태 비활성화 -->
     <button id="barrier-toggle">비활성화</button>
     <div id="barrier-status"></div>
     <audio id="barrier-alarm-sound" src="barrier_alarm.wav" preload="auto"></audio>
@@ -21,7 +22,7 @@
   <!-- 필드보스 알람 섹션 -->
   <div id="fieldboss-container" class="alarm-container">
     <h2>필드보스 알람</h2>
-    <!-- 토글 버튼: 초기 상태는 알람 비활성화 -->
+    <!-- 토글 버튼: 초기 상태 비활성화 -->
     <button id="fieldboss-toggle">비활성화</button>
     <div id="fieldboss-status"></div>
     <audio id="fieldboss-alarm-sound" src="fieldboss_alarm.wav" preload="auto"></audio>

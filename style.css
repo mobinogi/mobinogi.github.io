@@ -1,4 +1,11 @@
-/* Global reset 및 기본 설정 */
+/* 기존 로고 관련 CSS를 img 용도로 변경 */
+.logo {
+    display: block;
+    margin: 20px auto;  /* 중앙 정렬 */
+    /* width나 height를 명시하지 않으면 이미지의 원본 크기로 표시됩니다. */
+}
+
+/* 나머지 기존 스타일들은 그대로 유지 */
 html, body {
     margin: 0;
     padding: 0;
@@ -8,7 +15,6 @@ html, body {
     font-family: 'Gmarket', Arial, sans-serif;
 }
 
-/* 배경 및 본문 설정 */
 body {
     display: flex;
     flex-direction: column;
@@ -21,16 +27,6 @@ body {
     background-position: center;
 }
 
-/* 로고 스타일 */
-.logo {
-    background: url('logo.png') no-repeat center;
-    background-size: contain;
-    width: 400px;
-    height: 100px;
-    margin: 20px 0;
-}
-
-/* 알람 컨테이너 애니메이션 */
 @keyframes fadeInBox {
     0% {
         opacity: 0;
@@ -42,20 +38,18 @@ body {
     }
 }
 
-/* 알람 컨테이너 기본 스타일 */
 .alarm-container {
-    background-color: rgba(179, 179, 179, 0.25); /* 약간 투명한 배경 */
+    background-color: transparent;
     padding: 15px 20px;
     border-radius: 10px;
     text-align: center;
     width: 250px;
     margin: 15px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
     opacity: 0;
     animation: fadeInBox 1s ease-out forwards;
 }
 
-/* 각 컨테이너에 애니메이션 지연 부여 */
 #barrier-container {
     animation-delay: 0.2s;
 }
@@ -63,7 +57,6 @@ body {
     animation-delay: 0.5s;
 }
 
-/* 알람 타이틀 스타일 */
 .alarm-container h2 {
     margin: 0 0 10px;
     font-family: 'Gmarket', Arial, sans-serif;
@@ -71,7 +64,6 @@ body {
     color: #222;
 }
 
-/* 알람 상태 메시지 스타일 */
 .alarm-container div[id$="-status"] {
     font-family: 'GmarketLight', Arial, sans-serif;
     font-size: 14px;
@@ -79,7 +71,6 @@ body {
     margin: 10px 0;
 }
 
-/* 버튼 기본 스타일 */
 button {
     padding: 10px 15px;
     font-size: 16px;
@@ -92,17 +83,14 @@ button {
     outline: none;
 }
 
-/* 버튼 누를 때 눌리는 모션 */
 button:active {
     transform: scale(0.95);
 }
 
-/* 토글 버튼 상태에 따라 배경색 변경 (선택 사항) */
 button:focus {
     background-color: #0f78d1;
 }
 
-/* Footer 스타일 */
 .footer {
     margin-top: 30px;
     font-family: 'GmarketLight', Arial, sans-serif;
@@ -111,7 +99,6 @@ button:focus {
     text-align: center;
 }
 
-/* audio 요소는 화면에 보이지 않도록 */
 audio {
     display: none;
 }
