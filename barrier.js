@@ -54,13 +54,11 @@ document.addEventListener('DOMContentLoaded', function () {
   toggleButton.addEventListener('click', function () {
     if (!alarmActive) {
       alarmActive = true;
-      toggleButton.innerText = "활성화";
-      updateStatus("알람 활성화됨: " + new Date().toLocaleTimeString());
+      toggleButton.innerText = "활성화"
       intervalId = setInterval(checkAndTriggerBarrierAlarm, 1000);
     } else {
       alarmActive = false;
       toggleButton.innerText = "비활성화";
-      updateStatus("알람 비활성화됨");
       clearInterval(intervalId);
     }
   });
