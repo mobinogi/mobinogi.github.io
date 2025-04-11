@@ -35,20 +35,22 @@
   <div id="fieldboss-container" class="alarm-container">
     <h2>필드 보스</h2>
     <button id="fieldboss-toggle">비활성화</button>
-    <div id="fieldboss-options" style="display: none; margin-top: 10px;">
-      <label style="display: block; text-align: center;">
-        <span class="switch-label">소리</span><br>
-        <input type="checkbox" id="fieldboss-sound-switch" class="checkbox">
-        <div class="switch"></div>
-      </label>
-      <label style="display: block; text-align: center; margin-top: 10px;">
-        <span class="switch-label">팝업</span><br>
-        <input type="checkbox" id="fieldboss-popup-switch" class="checkbox">
-        <div class="switch"></div>
-      </label>
+    <div id="fieldboss-options" style="display: none; margin-top: 10px; text-align: center;">
+      <div style="display: inline-block; margin: 0 20px;">
+        <div class="switch-label">소리</div>
+        <label>
+          <input type="checkbox" id="fieldboss-sound-switch" class="checkbox">
+          <div class="switch"></div>
+        </label>
+      </div>
+      <div style="display: inline-block; margin: 0 20px;">
+        <div class="switch-label">팝업</div>
+        <label>
+          <input type="checkbox" id="fieldboss-popup-switch" class="checkbox">
+          <div class="switch"></div>
+        </label>
+      </div>
     </div>
-    <audio id="fieldboss-alarm-sound" src="fieldboss_alarm.mp3" preload="auto"></audio>
-  </div>
   
   <footer class="footer">
     <p>© 2024 Riverize. All Rights Reserved.</p>
