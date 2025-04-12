@@ -13,30 +13,31 @@
   <!-- 결계 알람 섹션 -->
   <div id="barrier-container" class="alarm-container">
     <h2>결계</h2>
-    <!-- 메인 토글 버튼 -->
+    <!-- 메인 토글 버튼 (활성화/비활성화) -->
     <button id="barrier-toggle">비활성화</button>
-    <!-- 옵션 영역: 소리와 팝업 (iOS 스타일 슬라이드 토글 스위치) -->
-    <div id="barrier-options" style="display: none; margin-top: 10px;">
+    <!-- 옵션 영역: 두 토글 스위치가 한 줄에 배치됨 -->
+    <div id="barrier-options" style="display: none; margin-top: 10px; text-align: center;">
       <div style="display: inline-block; margin: 0 20px;">
         <div class="switch-label">소리</div>
         <label>
-          <input type="checkbox" id="fieldboss-sound-switch" class="checkbox">
+          <input type="checkbox" id="barrier-sound-switch" class="checkbox">
           <div class="switch"></div>
         </label>
       </div>
       <div style="display: inline-block; margin: 0 20px;">
-        <div class="switch-label">팝업</div>
+        <div class="switch-label">알람</div>
         <label>
-          <input type="checkbox" id="fieldboss-popup-switch" class="checkbox">
+          <input type="checkbox" id="barrier-popup-switch" class="checkbox">
           <div class="switch"></div>
-      </label>
+        </label>
+      </div>
     </div>
     <audio id="barrier-alarm-sound" src="barrier_alarm.mp3" preload="auto"></audio>
   </div>
   
   <!-- 필드 보스 알람 섹션 -->
   <div id="fieldboss-container" class="alarm-container">
-    <h2>필드 보스</h2>
+    <h2>필드 보스 결계</h2>
     <button id="fieldboss-toggle">비활성화</button>
     <div id="fieldboss-options" style="display: none; margin-top: 10px; text-align: center;">
       <div style="display: inline-block; margin: 0 20px;">
@@ -47,13 +48,15 @@
         </label>
       </div>
       <div style="display: inline-block; margin: 0 20px;">
-        <div class="switch-label">팝업</div>
+        <div class="switch-label">알람</div>
         <label>
           <input type="checkbox" id="fieldboss-popup-switch" class="checkbox">
           <div class="switch"></div>
         </label>
       </div>
     </div>
+    <audio id="fieldboss-alarm-sound" src="fieldboss_alarm.mp3" preload="auto"></audio>
+  </div>
   
   <footer class="footer">
     <p>© 2024 Riverize. All Rights Reserved.</p>
