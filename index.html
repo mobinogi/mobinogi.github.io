@@ -68,38 +68,39 @@
   <!-- mSwitch 초기화 코드 (한글 텍스트 적용) -->
   <script>
   $(document).ready(function(){
-      $(".m_switch_check:checkbox").mSwitch({
-          onRender:function(elem){
-              var entity = elem.attr("entity");
-              var label = elem.parent().parent().prev(".m_settings_label");
-              if (elem.val() == 0){
-                  $.mSwitch.turnOff(elem);
-                  label.html(entity + " <span class=\"m_red\">끔</span>");
-              } else {
-                  label.html(entity + " <span class=\"m_green\">켬</span>");
-                  $.mSwitch.turnOn(elem);
-              }
-          },
-          onRendered:function(elem){
-              console.log(elem);
-          },
-          onTurnOn:function(elem){
-              var entity = elem.attr("entity");
-              var label = elem.parent().parent().prev(".m_settings_label");
-              if (elem.val() == "0"){
-                  elem.val("1");
-                  label.html(entity + " <span class=\"m_green\">켬</span>");
-          },
-          onTurnOff:function(elem){
-              var entity = elem.attr("entity");
-              var label = elem.parent().parent().prev(".m_settings_label");
-              if (elem.val() == "1"){
-                  elem.val("0");
-                  label.html(entity + " <span class=\"m_red\">끔</span>");
-          }
-      });
-  });
-  </script>
+     $(".m_switch_check:checkbox").mSwitch({
+         onRender:function(elem){
+             var entity = elem.attr("entity");
+             var label = elem.parent().parent().find(".m_settings_label");
+             // 초기 상태에 따라 분기 처리하여 토글 스위치 상태를 설정
+             if (elem.val() == 0){
+                 $.mSwitch.turnOff(elem);
+                 label.html(entity + " <span class=\"m_red\">끔</span>");
+             } else {
+                 label.html(entity + " <span class=\"m_green\">켬</span>");
+                 $.mSwitch.turnOn(elem);
+             }
+         },
+         onRendered:function(elem){
+             console.log(elem);
+         },
+         onTurnOn:function(elem){
+             var entity = elem.attr("entity");
+             var label = elem.parent().parent().find(".m_settings_label");
+             // 강제 업데이트: 항상 값을 1로 지정하고 라벨을 갱신
+             elem.val("1");
+             label.html(entity + " <span class=\"m_green\">켬</span>");
+         },
+         onTurnOff:function(elem){
+             var entity = elem.attr("entity");
+             var label = elem.parent().parent().find(".m_settings_label");
+             // 강제 업데이트: 항상 값을 0으로 지정하고 라벨을 갱신
+             elem.val("0");
+             label.html(entity + " <span class=\"m_red\">끔</span>");
+         }
+     });
+ });
+ </script>
   <!-- Alarm 스크립트 -->
   <script src="barrier.js"></script>
   <script src="fieldboss.js"></script>
