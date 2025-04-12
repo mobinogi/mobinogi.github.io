@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', function () {
   mainToggleButton.addEventListener('click', function () {
     if (!alarmActive) {
       alarmActive = true;
-      mainToggleButton.innerText = "활성화";
+      mainToggleButton.innerText = "활성화중";
       optionsContainer.style.display = "block";
       intervalId = setInterval(checkAndTriggerFieldbossAlarm, 1000);
     } else {

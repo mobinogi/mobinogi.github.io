@@ -40,9 +40,9 @@ document.addEventListener('DOMContentLoaded', function () {
         // 알람 토글이 켜져 있으면 팝업 알림 실행
         if ($("#barrier-popup-switch").val() == "1") {
           if (Notification && Notification.permission === "granted") {
-            new Notification("결계 알람", { body: "지정된 알람 시간입니다.", icon: "logo.png" });
+            new Notification("결계 알람", { body: "결계가 곧 생성 됩니다.", icon: "logo.png" });
           } else {
-            alert("결계 알람: 지정된 알람 시간입니다.");
+            alert("결계 알람: 결계가 곧 생성 됩니다.");
           }
         }
       }
@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function () {
   mainToggleButton.addEventListener('click', function () {
     if (!alarmActive) {
       alarmActive = true;
-      mainToggleButton.innerText = "활성화";
+      mainToggleButton.innerText = "활성화중";
       optionsContainer.style.display = "block";
       intervalId = setInterval(checkAndTriggerBarrierAlarm, 1000);
     } else {
