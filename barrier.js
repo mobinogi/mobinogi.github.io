@@ -15,8 +15,6 @@ document.addEventListener('DOMContentLoaded', function () {
   const barrierAlarmSound = document.getElementById('barrier-alarm-sound');
   const mainToggleButton = document.getElementById('barrier-toggle');
   const optionsContainer = document.getElementById('barrier-options');
-  const soundSwitch = document.getElementById('barrier-sound-switch');
-  const popupSwitch = document.getElementById('barrier-popup-switch');
 
   let alarmActive = false;
   let intervalId;
@@ -32,13 +30,15 @@ document.addEventListener('DOMContentLoaded', function () {
     barrierAlarmTriggerTimes.forEach(function(time) {
       if (currentHour === time.hour && currentMinute === time.minute) {
         console.log(`결계 알람 울림 (3분 전): ${time.hour}:${(time.minute < 10 ? '0' : '') + time.minute}`);
-        if (soundSwitch.checked && barrierAlarmSound) {
+        // 소리 토글이 켜져 있으면 알람 소리 재생
+        if ($("#barrier-sound-switch").val() == "1" && barrierAlarmSound) {
           barrierAlarmSound.currentTime = 0;
           barrierAlarmSound.play().catch(function(error) {
             console.error('결계 알람 소리 재생 오류:', error);
           });
         }
-        if (popupSwitch.checked) {
+        // 알람 토글이 켜져 있으면 팝업 알림 실행
+        if ($("#barrier-popup-switch").val() == "1") {
           if (Notification && Notification.permission === "granted") {
             new Notification("결계 알람", { body: "지정된 알람 시간입니다.", icon: "logo.png" });
           } else {
@@ -54,9 +54,6 @@ document.addEventListener('DOMContentLoaded', function () {
       alarmActive = true;
       mainToggleButton.innerText = "활성화";
       optionsContainer.style.display = "block";
-      if (popupSwitch.checked && Notification && Notification.permission !== "granted") {
-        Notification.requestPermission();
-      }
       intervalId = setInterval(checkAndTriggerBarrierAlarm, 1000);
     } else {
       alarmActive = false;
