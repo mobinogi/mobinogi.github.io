@@ -66,6 +66,17 @@
   <script src="barrier.js"></script>
   <script src="fieldboss.js"></script>
   <!-- jQuery (iOS 스위치 관련 jQuery 사용 시 필요) -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script>
+$(document).ready(function()
+{
+
+$('.switch').click(function()
+{
+$(this).toggleClass("switchOn");
+});
+
+});
+</script>
 </body>
 </html>
