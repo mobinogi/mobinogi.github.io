@@ -74,9 +74,9 @@
               var label = elem.parent().parent().prev(".m_settings_label");
               if (elem.val() == 0){
                   $.mSwitch.turnOff(elem);
-                  label.html(entity + " <span class=\"m_red\">(끔)</span>");
+                  label.html(entity + " <span class=\"m_red\">끔</span>");
               } else {
-                  label.html(entity + " <span class=\"m_green\">(켬)</span>");
+                  label.html(entity + " <span class=\"m_green\">켬</span>");
                   $.mSwitch.turnOn(elem);
               }
           },
@@ -88,20 +88,14 @@
               var label = elem.parent().parent().prev(".m_settings_label");
               if (elem.val() == "0"){
                   elem.val("1");
-                  label.html(entity + " <span class=\"m_green\">(켬)</span>");
-              } else {
-                  label.html(entity + " <span class=\"m_red\">(Error)</span>");
-              }
+                  label.html(entity + " <span class=\"m_green\">켬</span>");
           },
           onTurnOff:function(elem){
               var entity = elem.attr("entity");
               var label = elem.parent().parent().prev(".m_settings_label");
               if (elem.val() == "1"){
                   elem.val("0");
-                  label.html(entity + " <span class=\"m_red\">(끔)</span>");
-              } else {
-                  label.html(entity + " <span class=\"m_red\">(Error)</span>");
-              }
+                  label.html(entity + " <span class=\"m_red\">끔</span>");
           }
       });
   });
