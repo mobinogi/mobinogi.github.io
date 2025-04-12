@@ -5,31 +5,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>마비노기 모바일 알람</title>
   <link rel="stylesheet" href="style.css">
+  <!-- mSwitch 플러그인 CSS (원본 그대로 사용) -->
+  <link rel="stylesheet" href="css/jquery.mswitch.css">
 </head>
 <body>
   <!-- 로고: 원본 크기로 표시 (img 태그 사용) -->
   <img class="logo" src="logo.png" alt="Logo">
-
+  
   <!-- 결계 알람 섹션 -->
   <div id="barrier-container" class="alarm-container">
     <h2>결계</h2>
-    <!-- 메인 토글 버튼 (활성화/비활성화) -->
+    <!-- 메인 토글 버튼 (전체 활성/비활성) -->
     <button id="barrier-toggle">비활성화</button>
-    <!-- 옵션 영역: 두 토글 스위치가 한 줄에 배치됨 -->
+    <!-- 옵션 영역: 토글 스위치 2개가 한 줄에 배치됨 -->
     <div id="barrier-options" style="display: none; margin-top: 10px; text-align: center;">
       <div style="display: inline-block; margin: 0 20px;">
-        <div class="switch-label">소리</div>
-        <label>
-          <input type="checkbox" id="barrier-sound-switch" class="checkbox">
-          <div class="switch"></div>
-        </label>
+        <div class="m_settings_label" id="barrier-sound-label">소리 끔</div>
+        <div>
+          <input type="checkbox" id="barrier-sound-switch" class="m_switch_check" value="0" entity="소리">
+        </div>
       </div>
       <div style="display: inline-block; margin: 0 20px;">
-        <div class="switch-label">알람</div>
-        <label>
-          <input type="checkbox" id="barrier-popup-switch" class="checkbox">
-          <div class="switch"></div>
-        </label>
+        <div class="m_settings_label" id="barrier-popup-label">알람 끔</div>
+        <div>
+          <input type="checkbox" id="barrier-popup-switch" class="m_switch_check" value="0" entity="알람">
+        </div>
       </div>
     </div>
     <audio id="barrier-alarm-sound" src="barrier_alarm.mp3" preload="auto"></audio>
@@ -41,18 +41,16 @@
     <button id="fieldboss-toggle">비활성화</button>
     <div id="fieldboss-options" style="display: none; margin-top: 10px; text-align: center;">
       <div style="display: inline-block; margin: 0 20px;">
-        <div class="switch-label">소리</div>
-        <label>
-          <input type="checkbox" id="fieldboss-sound-switch" class="checkbox">
-          <div class="switch"></div>
-        </label>
+        <div class="m_settings_label" id="fieldboss-sound-label">소리 끔</div>
+        <div>
+          <input type="checkbox" id="fieldboss-sound-switch" class="m_switch_check" value="0" entity="소리">
+        </div>
       </div>
       <div style="display: inline-block; margin: 0 20px;">
-        <div class="switch-label">알람</div>
-        <label>
-          <input type="checkbox" id="fieldboss-popup-switch" class="checkbox">
-          <div class="switch"></div>
-        </label>
+        <div class="m_settings_label" id="fieldboss-popup-label">알람 끔</div>
+        <div>
+          <input type="checkbox" id="fieldboss-popup-switch" class="m_switch_check" value="0" entity="알람">
+        </div>
       </div>
     </div>
     <audio id="fieldboss-alarm-sound" src="fieldboss_alarm.mp3" preload="auto"></audio>
@@ -60,12 +58,56 @@
   
   <footer class="footer">
     <p>© 2024 Riverize. All Rights Reserved.</p>
+    <p>상단 로고 및 일부 이미지의 저작권은 해당 원작자에게 있습니다.</p>
   </footer>
 
-  <!-- 스크립트 파일 -->
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <!-- mSwitch 플러그인 JS -->
+  <script src="js/jquery.mswitch.js"></script>
+  <!-- mSwitch 초기화 코드 (한글 텍스트 적용) -->
+  <script>
+  $(document).ready(function(){
+      $(".m_switch_check:checkbox").mSwitch({
+          onRender:function(elem){
+              var entity = elem.attr("entity");
+              var label = elem.parent().parent().prev(".m_settings_label");
+              if (elem.val() == 0){
+                  $.mSwitch.turnOff(elem);
+                  label.html(entity + " <span class=\"m_red\">(끔)</span>");
+              } else {
+                  label.html(entity + " <span class=\"m_green\">(켬)</span>");
+                  $.mSwitch.turnOn(elem);
+              }
+          },
+          onRendered:function(elem){
+              console.log(elem);
+          },
+          onTurnOn:function(elem){
+              var entity = elem.attr("entity");
+              var label = elem.parent().parent().prev(".m_settings_label");
+              if (elem.val() == "0"){
+                  elem.val("1");
+                  label.html(entity + " <span class=\"m_green\">(켬)</span>");
+              } else {
+                  label.html(entity + " <span class=\"m_red\">(Error)</span>");
+              }
+          },
+          onTurnOff:function(elem){
+              var entity = elem.attr("entity");
+              var label = elem.parent().parent().prev(".m_settings_label");
+              if (elem.val() == "1"){
+                  elem.val("0");
+                  label.html(entity + " <span class=\"m_red\">(끔)</span>");
+              } else {
+                  label.html(entity + " <span class=\"m_red\">(Error)</span>");
+              }
+          }
+      });
+  });
+  </script>
+  <!-- Alarm 스크립트 -->
   <script src="barrier.js"></script>
   <script src="fieldboss.js"></script>
-  <!-- jQuery (iOS 스위치 관련 jQuery 사용 시 필요) -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 </body>
 </html>
