@@ -4,10 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>마비노기 모바일 알람</title>
-  <!-- mSwitch 플러그인 CSS (원본 그대로) -->
-  <link href="css/jquery.mswitch.css" rel="stylesheet" type="text/css">
-  <!-- 기존 스타일 CSS -->
   <link rel="stylesheet" href="style.css">
+  <!-- mSwitch 플러그인 CSS (원본 코드 사용) -->
+  <link rel="stylesheet" href="css/jquery.mswitch.css">
 </head>
 <body>
   <!-- 로고: 원본 크기로 표시 (img 태그 사용) -->
@@ -16,17 +15,17 @@
   <!-- 결계 알람 섹션 -->
   <div id="barrier-container" class="alarm-container">
     <h2>결계</h2>
-    <!-- 메인 토글 버튼 (알람 전체 활성화/비활성화) -->
+    <!-- 메인 토글 버튼 (활성화/비활성화) -->
     <button id="barrier-toggle">비활성화</button>
-    <!-- 옵션 영역: 두 토글 스위치 가로 정렬 -->
-    <div id="barrier-options" style="display: none; margin-top: 10px; text-align: center;">
+    <!-- 옵션 영역: 두 토글 스위치가 한 줄에 배치됨 -->
+    <div id="barrier-options" style="display: none; text-align: center; margin-top: 10px;">
       <div style="display: inline-block; margin: 0 20px;">
-         <div class="switch-label" style="margin-bottom:5px;">소리</div>
-         <input type="checkbox" id="barrier-sound-switch" class="m_switch_check" value="0" entity="소리">
+        <div class="m_settings_label">소리</div>
+        <input type="checkbox" id="barrier-sound-switch" class="m_switch_check" value="0" entity="소리">
       </div>
       <div style="display: inline-block; margin: 0 20px;">
-         <div class="switch-label" style="margin-bottom:5px;">알람</div>
-         <input type="checkbox" id="barrier-popup-switch" class="m_switch_check" value="0" entity="알람">
+        <div class="m_settings_label">알람</div>
+        <input type="checkbox" id="barrier-popup-switch" class="m_switch_check" value="0" entity="알람">
       </div>
     </div>
     <audio id="barrier-alarm-sound" src="barrier_alarm.mp3" preload="auto"></audio>
@@ -36,14 +35,14 @@
   <div id="fieldboss-container" class="alarm-container">
     <h2>필드 보스 결계</h2>
     <button id="fieldboss-toggle">비활성화</button>
-    <div id="fieldboss-options" style="display: none; margin-top: 10px; text-align: center;">
+    <div id="fieldboss-options" style="display: none; text-align: center; margin-top: 10px;">
       <div style="display: inline-block; margin: 0 20px;">
-         <div class="switch-label" style="margin-bottom:5px;">소리</div>
-         <input type="checkbox" id="fieldboss-sound-switch" class="m_switch_check" value="0" entity="소리">
+        <div class="m_settings_label">소리</div>
+        <input type="checkbox" id="fieldboss-sound-switch" class="m_switch_check" value="0" entity="소리">
       </div>
       <div style="display: inline-block; margin: 0 20px;">
-         <div class="switch-label" style="margin-bottom:5px;">알람</div>
-         <input type="checkbox" id="fieldboss-popup-switch" class="m_switch_check" value="0" entity="알람">
+        <div class="m_settings_label">알람</div>
+        <input type="checkbox" id="fieldboss-popup-switch" class="m_switch_check" value="0" entity="알람">
       </div>
     </div>
     <audio id="fieldboss-alarm-sound" src="fieldboss_alarm.mp3" preload="auto"></audio>
@@ -53,33 +52,31 @@
     <p>© 2024 Riverize. All Rights Reserved.</p>
   </footer>
 
-  <!-- jQuery (mSwitch 플러그인에서 필요) -->
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-  <!-- mSwitch 플러그인 JS (원본 그대로) -->
-  <script src="js/jquery.mswitch.js" type="text/javascript"></script>
-  <!-- 알람별 JS 코드 -->
+  <!-- 스크립트 파일 -->
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <!-- mSwitch 플러그인 JS (원본 코드 사용) -->
+  <script src="js/jquery.mswitch.js"></script>
   <script src="barrier.js"></script>
   <script src="fieldboss.js"></script>
-  <!-- mSwitch 초기화 (Enable/Disable 문구 제거) -->
   <script>
-  $(document).ready(function(){
+    $(document).ready(function(){
+      // mSwitch 플러그인 초기화
       $(".m_switch_check:checkbox").mSwitch({
           onRender: function(elem){
-              // 초기 상태만 결정합니다.
-              if (elem.val() == 0){
-                  $.mSwitch.turnOff(elem);
-              } else {
-                  $.mSwitch.turnOn(elem);
+              // 상태 텍스트를 빈 문자열로 처리하여 보이지 않게 함
+              var label = elem.parent().prev(".m_settings_label");
+              if(label){
+                  label.text("");
               }
           },
           onTurnOn: function(elem){
-              elem.val("1");
+              // 별도 상태 텍스트 업데이트 없이 그대로 둡니다.
           },
           onTurnOff: function(elem){
-              elem.val("0");
+              // 별도 처리 없음.
           }
       });
-  });
+    });
   </script>
 </body>
 </html>
