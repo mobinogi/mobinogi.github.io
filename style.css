@@ -153,8 +153,10 @@ button:active {
 
 .checkbox:checked + .switch:after {
   transform: translateX(32px);
+  background: #4cd964;
   border-radius: 50%;
 }
+
 
 /* switch label: 상단 중앙 배치 */
 .switch-label {
