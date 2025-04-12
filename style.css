@@ -100,7 +100,12 @@ button:active {
     font-size: 10px;
 }
 
-.checkbox{display:none}
+.checkbox {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  position: absolute;
+}
 .switch
 {
 width: 62px;
