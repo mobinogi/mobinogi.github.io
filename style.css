@@ -100,7 +100,7 @@ button:active {
     font-size: 10px;
 }
 
-/* iOS 스타일 슬라이드 토글 스위치 (mSwitch 플러그인에서 사용) */
+/* iOS 스타일 슬라이드 토글 스위치 */
 .switch {
   position: relative;
   display: inline-block;
@@ -108,32 +108,25 @@ button:active {
   height: 32px;
   margin: 0 10px 0 0;
   vertical-align: middle;
+  background: #ccc;
+  border-radius: 16px;
+  transition: background 0.3s;
 }
 
-.switch input {
+/* 체크박스 숨기기 (보이진 않지만, 이벤트는 받도록) */
+.checkbox {
   opacity: 0;
   width: 0;
   height: 0;
   position: absolute;
 }
 
-.switch:before {
-  content: '';
-  position: absolute;
-  left: 1px;
-  top: 1px;
-  width: 60px;
-  height: 30px;
-  background: #fff;
-  border-radius: 16px;
-  z-index: 1;
-}
-
+/* 토글 노브 */
 .switch:after {
   content: '';
   position: absolute;
-  left: 1px;
   top: 1px;
+  left: 1px;
   width: 29px;
   height: 29px;
   background: #fff;
@@ -143,15 +136,14 @@ button:active {
   box-shadow: 0 2px 5px #999;
 }
 
-/* 기존 mSwitch 플러그인에서는 .checkbox 클래스를 사용.
-   체크된 상태에서 추가적인 스타일은 플러그인 내부에서 처리되므로
-   여기서는 별도로 조정할 필요가 없다면 그대로 둡니다. */
-.checkbox {
-  display: none;
+/* 체크 시 토글 컨테이너 배경은 그대로, 단지 노브만 이동 */
+.checkbox:checked + .switch:after {
+  transform: translateX(32px);
+  border-radius: 50%;
 }
 
 /* switch label: 상단 중앙 배치 */
-.switch-label, .m_settings_label {
+.switch-label {
   display: block;
   text-align: center;
   font-family: 'GmarketLight', Arial, sans-serif;

@@ -1,6 +1,7 @@
 // barrier.js
 document.addEventListener('DOMContentLoaded', function () {
   // 결계 알람 트리거 시간 (출현 3분 전)
+  // 예: 이벤트 출현 03:00 → 알람: 2:57, 06:00 → 5:57, 등.
   const barrierAlarmTriggerTimes = [
     { hour: 2, minute: 57 },
     { hour: 5, minute: 57 },
@@ -15,6 +16,8 @@ document.addEventListener('DOMContentLoaded', function () {
   const barrierAlarmSound = document.getElementById('barrier-alarm-sound');
   const mainToggleButton = document.getElementById('barrier-toggle');
   const optionsContainer = document.getElementById('barrier-options');
+  const soundSwitch = document.getElementById('barrier-sound-switch');
+  const popupSwitch = document.getElementById('barrier-popup-switch');
 
   let alarmActive = false;
   let intervalId;
@@ -30,19 +33,31 @@ document.addEventListener('DOMContentLoaded', function () {
     barrierAlarmTriggerTimes.forEach(function(time) {
       if (currentHour === time.hour && currentMinute === time.minute) {
         console.log(`결계 알람 울림 (3분 전): ${time.hour}:${(time.minute < 10 ? '0' : '') + time.minute}`);
-        // 소리 토글이 켜져 있으면 알람 소리 재생
-        if ($("#barrier-sound-switch").val() == "1" && barrierAlarmSound) {
+
+        // 소리 옵션: 소리 옵션이 체크되어 있으면 바로 재생
+        if (soundSwitch.checked) {
           barrierAlarmSound.currentTime = 0;
           barrierAlarmSound.play().catch(function(error) {
             console.error('결계 알람 소리 재생 오류:', error);
           });
         }
-        // 알람 토글이 켜져 있으면 팝업 알림 실행
-        if ($("#barrier-popup-switch").val() == "1") {
-          if (Notification && Notification.permission === "granted") {
-            new Notification("결계 알람", { body: "결계가 곧 생성 됩니다.", icon: "logo.png" });
+
+        // 팝업 옵션: 소리와 동시에 작동 시 소리가 먼저 나오도록, 0.5초 지연 후 팝업 실행
+        if (popupSwitch.checked) {
+          if (soundSwitch.checked) {
+            setTimeout(function() {
+              if (Notification && Notification.permission === "granted") {
+                new Notification("결계 알람", { body: "결계가 곧 생성됩니다.", icon: "logo.png" });
+              } else {
+                alert("결계 알람: 결계가 곧 생성됩니다.");
+              }
+            }, 500);
           } else {
-            alert("결계 알람: 결계가 곧 생성 됩니다.");
+            if (Notification && Notification.permission === "granted") {
+              new Notification("결계 알람", { body: "결계가 곧 생성됩니다.", icon: "logo.png" });
+            } else {
+              alert("결계 알람: 결계가 곧 생성됩니다.");
+            }
           }
         }
       }
@@ -52,8 +67,11 @@ document.addEventListener('DOMContentLoaded', function () {
   mainToggleButton.addEventListener('click', function () {
     if (!alarmActive) {
       alarmActive = true;
-      mainToggleButton.innerText = "활성화중";
+      mainToggleButton.innerText = "활성화";
       optionsContainer.style.display = "block";
+      if (popupSwitch.checked && Notification && Notification.permission !== "granted") {
+        Notification.requestPermission();
+      }
       intervalId = setInterval(checkAndTriggerBarrierAlarm, 1000);
     } else {
       alarmActive = false;
