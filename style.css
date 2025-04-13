@@ -181,3 +181,10 @@ button:active {
   margin-bottom: 5px;
   color: #000;
 }
+.m_settings_row,
+.m_settings_table,
+.m_settings_cell {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
