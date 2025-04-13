@@ -97,10 +97,6 @@ button:active {
     width: 80px;         /* 그라데이션 범위(원하는대로 조절) */
     height: 80px;
     pointer-events: none; /* 마우스 이벤트 비활성화 */
-    background: radial-gradient(
-        circle at bottom left,
-        rgba(255, 255, 255, 0.6) 0%, 
-        rgba(255, 255, 255, 0.733) 80%
     );
 }
 
@@ -113,10 +109,6 @@ button:active {
     width: 80px;
     height: 80px;
     pointer-events: none;
-    background: radial-gradient(
-        circle at bottom right,
-        rgba(255, 255, 255, 0.6) 0%, 
-        rgba(255, 255, 255, 0.733) 80%
     );
 }
 /* Footer 스타일 */
