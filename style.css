@@ -188,3 +188,8 @@ button:active {
     border: none !important;
     box-shadow: none !important;
 }
+/* alarm-container 하단 모서리 그라데이션 제거 */
+.alarm-container::before,
+.alarm-container::after {
+    content: none !important; 
+}
