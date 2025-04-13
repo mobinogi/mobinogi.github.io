@@ -39,7 +39,7 @@
   top: 2px;
   bottom: 2px;
   right: 48%;
-  background-color: #fff;
+  background-color: transparent;
   border-radius: 36px;
   z-index: 1;
   transition: 0.25s cubic-bezier(0.785, 0.135, 0.15, 0.86);
