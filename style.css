@@ -4,7 +4,7 @@ html, body {
     height: 100%;
     margin: 0;
     font-family: 'Gmarket', Arial, sans-serif;
-    background-image: url('back.png');
+    background-image: url('clear-white-plaster-texture-pattern.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -47,17 +47,17 @@ html, body {
 
 /* 알람 박스 스타일 */
 .alarm-container {
-    background-color: rgba(255, 255, 255, 0.87);
-    padding: 10px 20px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.6); /* 경계선 표시 */
     border-radius: 9px;
     text-align: center;
     width: 230px;
     margin-bottom: 30px;
     box-shadow: 
-        0 -5px 10px rgba(255, 255, 255, 0.911),
-        -5px 0 10px rgba(255, 255, 255, 0.692),
-        5px 5px 15px rgba(255, 255, 255, 0.911),
-        0 5px 15px rgb(255, 255, 255, 0.692);
+        0 3px 6px rgba(0, 0, 0, 0.1), 
+        0 5px 15px rgba(0, 0, 0, 0.1);
+
+    overflow: hidden; /* 하단 모서리에 추가될 그라데이션 영역이 튀어나가지 않도록 */
     opacity: 0;
     animation: fadeInBox 1s ease-out forwards;
 }
@@ -88,7 +88,37 @@ button:active {
     transform: translateY(2px);
     box-shadow: none;
 }
+/* 왼쪽 하단 모서리에 그라데이션 */
+.alarm-container::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 80px;         /* 그라데이션 범위(원하는대로 조절) */
+    height: 80px;
+    pointer-events: none; /* 마우스 이벤트 비활성화 */
+    background: radial-gradient(
+        circle at bottom left,
+        rgba(255, 255, 255, 0.6) 0%, 
+        rgba(255, 255, 255, 0.733) 80%
+    );
+}
 
+/* 오른쪽 하단 모서리에 그라데이션 */
+.alarm-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 80px;
+    height: 80px;
+    pointer-events: none;
+    background: radial-gradient(
+        circle at bottom right,
+        rgba(255, 255, 255, 0.6) 0%, 
+        rgba(255, 255, 255, 0.733) 80%
+    );
+}
 /* Footer 스타일 */
 .footer {
     text-align: center;
