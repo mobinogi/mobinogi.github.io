@@ -47,7 +47,7 @@ html, body {
 
 /* 알람 박스 스타일 */
 .alarm-container {
-    background-color: rgba(179, 179, 179, 0.178);
+    background-color: rgba(255, 255, 255, 0.87);
     padding: 10px 20px;
     border-radius: 9px;
     text-align: center;
