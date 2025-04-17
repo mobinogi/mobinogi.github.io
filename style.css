@@ -175,22 +175,13 @@ button:active {
   color: #000;
 }
 .m_settings_row,
-.m_settings_table,
-.m_settings_cell {
-    background: transparent !important;
-    border: none !important;
-    box-shadow: none !important;
-}
-/* 전체 옵션 테이블을 flex row 로 가로 정렬 */
-.m_settings_table {
+.m_settings_table { 
     display: flex !important;
     flex-wrap: nowrap !important;
     justify-content: center !important;
     align-items: center !important;
     margin: 0 auto !important;
 }
-
-/* 각 셀 안에서 텍스트(라벨)와 스위치를 세로로 쌓아 중앙 정렬 */
 .m_settings_cell {
     display: flex !important;
     flex-direction: column !important;
@@ -198,8 +189,10 @@ button:active {
     justify-content: center !important;
     padding: 0 10px !important;
     box-sizing: border-box !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
 }
-
 /* 라벨 아래 간격 */
 .m_settings_label {
     margin-bottom: 6px !important;
