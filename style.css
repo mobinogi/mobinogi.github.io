@@ -1,7 +1,8 @@
 /* 전체 레이아웃 설정 */
 html, body {
     overflow-x: hidden;
-    height: 100%;
+    height: auto;       /* 100% → auto */
+    overflow-y: auto;   /* 세로 스크롤 허용 */
     margin: 0;
     font-family: 'Gmarket', Arial, sans-serif;
     background-image: url('back.png');
