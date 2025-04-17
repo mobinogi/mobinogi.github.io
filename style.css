@@ -185,3 +185,18 @@ button:active {
 .alarm-container::after {
     content: none !important; 
 }
+@media (max-width: 480px) {
+  /* mSwitch 테이블이 작은 화면에 맞춰 자동 확장되도록 함 */
+  .m_settings_table {
+    width: 100% !important;
+  }
+  /* 셀의 패딩을 줄여 내용이 잘리지 않도록 조정 */
+  .m_settings_cell {
+    padding: 5px !important;
+    box-sizing: border-box;
+  }
+  /* 라벨 폰트 크기를 약간 줄여서 텍스트가 잘리지 않게 함 */
+  .m_settings_label {
+    font-size: 14px !important;
+  }
+}
