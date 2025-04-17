@@ -179,7 +179,7 @@ button:active {
     display: flex !important;
     flex-wrap: nowrap !important;
     justify-content: center !important;
-    align-items: center !important;
+    align-items: flex-start !important; /* center → flex-start */
     margin: 0 auto !important;
 }
 .m_settings_cell {
