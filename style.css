@@ -216,6 +216,9 @@ button:active {
 /* 라벨 아래 간격 */
 .m_settings_label {
     margin-bottom: 6px !important;
+    color: rgba(0, 0, 0, 0.6) !important;           /* 연한 회색 계열로 변경 */
+    font-weight: normal !important;                 /* 볼드 해제 */
+    font-family: 'GmarketLight', Arial, sans-serif; /* 라이트체 적용 */
 }
 /* alarm-container 하단 모서리 그라데이션 제거 */
 .alarm-container::before,
