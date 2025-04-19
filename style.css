@@ -75,10 +75,10 @@ html, body {
 /* 활성화/비활성화 토글 버튼 스타일 */
 button {
     padding: 7px 16px;
-    background: linear-gradient(45deg, #194bca, #2ecc71);
+    background: linear-gradient(45deg, #2ecc71);
     color: #ffffff;
-    border: none;
-    border-radius: 8px;
+    border: 1px solid rgba(183, 253, 181, 0.5);
+    border-radius: 11px;
     cursor: pointer;
     font-family: 'GmarketLight', Arial, sans-serif;
     font-size: 14px;
