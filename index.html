@@ -21,7 +21,7 @@
   <div id="barrier-container" class="alarm-container">
     <h2>결계</h2>
     <!-- 활성화 버튼을 h2 아래 별도 컨테이너로 분리 -->
-    <div class="toggle-container" style="margin-top: 10px;">
+    <div class="toggle-container">
       <button id="barrier-toggle" class="confetti-button">활성화</button>
     </div>
     <!-- 옵션 영역: mSwitch 데모 구조와 동일하게 한 행에 두 스위치 -->
@@ -122,6 +122,31 @@
   <script src="barrier.js"></script>
   <script src="fieldboss.js"></script>
   <script>
+    function toggleHeading(containerId) {
+      const h2 = document.querySelector(`#${containerId} h2`);
+      h2.classList.toggle('shrink');
+    }
+  
+    document.getElementById('barrier-toggle').addEventListener('click', function() {
+      // 1) 제목 애니메이션 (첫 클릭부터 확실히 작동)
+      toggleHeading('barrier-container');
+  
+      // 2) 버튼 텍스트 토글
+      this.innerText = this.innerText.trim() === '비활성화' ? '활성화' : '비활성화';
+  
+      // 3) 옵션 보이기/숨기기
+      const opts = document.getElementById('barrier-options');
+      opts.style.display = opts.style.display === 'none' ? 'block' : 'none';
+    });
+  
+    document.getElementById('fieldboss-toggle').addEventListener('click', function() {
+      toggleHeading('fieldboss-container');
+      this.innerText = this.innerText.trim() === '비활성화' ? '활성화' : '비활성화';
+      const opts = document.getElementById('fieldboss-options');
+      opts.style.display = opts.style.display === 'none' ? 'block' : 'none';
+    });
+  </script>
+  <script>
     var animateButton = function(e) {
     
       e.preventDefault;
@@ -150,31 +175,6 @@
       ga('send', 'pageview');
     
     </script>    
-<script>
-  // 버튼 클릭 때마다 제목에 shrink/expand 토글
-  function toggleHeadingAnim(btn, containerId) {
-    const heading = document.querySelector(`#${containerId} h2`);
-    // 눌린 버튼이 "비활성화" 텍스트였으면 → 축소 애니메이션
-    if (btn.innerText.trim() === '비활성화') {
-      heading.classList.remove('expand');
-      heading.classList.add('shrink');
-    } else {
-      // "활성화" 텍스트였으면 → 원상복귀 애니메이션
-      heading.classList.remove('shrink');
-      heading.classList.add('expand');
-    }
-  }
 
-  // 기존 토글 핸들러 안에 호출만 추가해 주세요
-  document.getElementById('barrier-toggle').addEventListener('click', function() {
-    toggleHeadingAnim(this, 'barrier-container');
-    /* --- 여기에 기존 비활성화⇄활성화 토글 로직이 이어집니다 --- */
-  });
-
-  document.getElementById('fieldboss-toggle').addEventListener('click', function() {
-    toggleHeadingAnim(this, 'fieldboss-container');
-    /* --- 기존 토글 로직 계속 --- */
-  });
-</script>
 </body>
 </html>

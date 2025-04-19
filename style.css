@@ -49,7 +49,8 @@ html, body {
 
 /* 알람 박스 스타일 */
 .alarm-container {
-    background-color: rgba(255, 255, 255, 0.7);
+    padding-top: 6px;
+    background-color: rgba(255, 255, 255, 0.8);
     border: 1px solid rgba(255, 255, 255, 0.6); /* 경계선 표시 */
     border-radius: 9px;
     text-align: center;
@@ -222,22 +223,20 @@ button:active {
    padding-bottom: 10px !important;
 }
 .toggle-container {
-  margin-top: 2px !important; /* 기존 10px → 4px로 줄임 */
+  margin-top: 2px !important; /* 기존 10px → 2px로 줄임 */
 }
-/* 1) h2 기본 트랜지션 설정 */
+/* 1) h2에 트랜지션 적용 */
 #barrier-container h2,
 #fieldboss-container h2 {
+  font-weight: normal;                    /* 볼드 해제 */
+  font-family: 'GmarketLight', Arial, sans-serif; /* 라이트체로 변경 */
+  margin-top: 8px;    /* 원하는 만큼 조절 */
+  margin-bottom: 4px; /* 버튼과의 간격도 함께 미세 조절 */
   transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
-/* 2) shrink 클래스: 축소 + 위로 이동 */
-h2.shrink {
-  transform: scale(0.6) translateY(-10px);
+/* 2) shrink 클래스: 축소 + 위로 이동 + 약간 투명 */
+.shrink {
+  transform: scale(0.8) translateY(-10px);
   opacity: 0.8;
-}
-
-/* 3) expand 클래스: 원상복귀 (사실 생략해도 기본 상태로 돌아갑니다) */
-h2.expand {
-  transform: scale(1) translateY(0);
-  opacity: 1;
 }
