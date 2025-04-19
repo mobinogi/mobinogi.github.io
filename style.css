@@ -78,7 +78,7 @@ button {
     background: linear-gradient(45deg, #194bca, #2ecc71);
     color: #ffffff;
     border: none;
-    border-radius: 4px;
+    border-radius: 8px;
     cursor: pointer;
     font-family: 'GmarketLight', Arial, sans-serif;
     font-size: 14px;
