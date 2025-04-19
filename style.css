@@ -221,3 +221,6 @@ button:active {
  .alarm-container {
    padding-bottom: 10px !important;
 }
+.toggle-container {
+  margin-top: 4px !important; /* 기존 10px → 4px로 줄임 */
+}
