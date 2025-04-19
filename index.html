@@ -1,20 +1,17 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+  <link rel="icon"            href="32x32.ico"           type="image/x-icon">
+  <link rel="icon"            href="32x32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" sizes="180x180" href="180x180.png">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>마비노기 모바일 알람</title>
   <link rel="stylesheet" href="style.css">
   <!-- mSwitch 플러그인 CSS -->
   <link rel="stylesheet" href="css/jquery.mswitch.css">
-  <link rel="icon" type="image/x-icon" href="32x32.ico">
-  <link rel="shortcut icon" href="32x32.ico">
-
-  <link rel="icon" type="image/png" sizes="32x32" href="32x32.png">
-  <link rel="apple-touch-icon" sizes="512x512" href="512x512.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="180x180.png">
-  <link rel="apple-touch-icon" sizes="152x152" href="152x152.png">
-  <link rel="apple-touch-icon" sizes="120x120" href="120x120.png">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="button.css">
 </head>
 <body>
   <!-- 로고: 원본 크기로 표시 (img 태그 사용) -->
@@ -25,7 +22,7 @@
     <h2>결계</h2>
     <!-- 활성화 버튼을 h2 아래 별도 컨테이너로 분리 -->
     <div class="toggle-container" style="margin-top: 10px;">
-      <button id="barrier-toggle">비활성화</button>
+      <button id="barrier-toggle" class="confetti-button">활성화</button>
     </div>
     <!-- 옵션 영역: mSwitch 데모 구조와 동일하게 한 행에 두 스위치 -->
     <div id="barrier-options" style="display:none; margin-top:10px;">
@@ -53,18 +50,23 @@
   <div id="fieldboss-container" class="alarm-container">
     <h2>필드 보스</h2>
     <div class="toggle-container" style="margin-top: 10px;">
-      <button id="fieldboss-toggle">비활성화</button>
+      <button id="fieldboss-toggle"  class="confetti-button">활성화</button>
     </div>
-    <div id="fieldboss-options" style="display: none; margin-top: 10px;">
+    <!-- 옵션 영역: mSwitch 데모 구조와 동일하게 한 행에 두 스위치 -->
+    <div id="fieldboss-options" style="display:none; margin-top:10px;">
       <div class="m_settings_row">
-        <div class="m_settings_table" style="margin: 0 auto;">
-          <div class="m_settings_cell m_settings_label" id="fieldboss-sound-label">소리 끔</div>
+        <div class="m_settings_table" style="margin:0 auto;">
+          <!-- 소리 옵션: 한 개 셀에 라벨+스위치 -->
           <div class="m_settings_cell">
-            <input type="checkbox" id="fieldboss-sound-switch" class="m_switch_check" value="0" entity="소리">
+            <div class="m_settings_label" id="fieldboss-sound-label">소리</div>
+            <input type="checkbox" id="fieldboss-sound-switch"
+               class="m_switch_check" value="0" entity="소리">
           </div>
-          <div class="m_settings_cell m_settings_label" id="fieldboss-popup-label">알람 끔</div>
+          <!-- 알람 옵션: 한 개 셀에 라벨+스위치 -->
           <div class="m_settings_cell">
-            <input type="checkbox" id="fieldboss-popup-switch" class="m_switch_check" value="0" entity="알람">
+            <div class="m_settings_label" id="fieldboss-popup-label">알람</div>
+            <input type="checkbox" id="fieldboss-popup-switch"
+               class="m_switch_check" value="0" entity="알람">
           </div>
         </div>
       </div>
@@ -119,5 +121,60 @@
   <!-- 알람 스크립트 -->
   <script src="barrier.js"></script>
   <script src="fieldboss.js"></script>
+  <script>
+    var animateButton = function(e) {
+    
+      e.preventDefault;
+      //reset animation
+      e.target.classList.remove('animate');
+    
+      e.target.classList.add('animate');
+      setTimeout(function(){
+        e.target.classList.remove('animate');
+      },700);
+    };
+    
+    var classname = document.getElementsByClassName("confetti-button");
+    
+    for (var i = 0; i < classname.length; i++) {
+      classname[i].addEventListener('click', animateButton, false);
+    }
+    </script>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    
+      ga('create', 'UA-46156385-1', 'cssscript.com');
+      ga('send', 'pageview');
+    
+    </script>    
+<script>
+  // 버튼 클릭 때마다 제목에 shrink/expand 토글
+  function toggleHeadingAnim(btn, containerId) {
+    const heading = document.querySelector(`#${containerId} h2`);
+    // 눌린 버튼이 "비활성화" 텍스트였으면 → 축소 애니메이션
+    if (btn.innerText.trim() === '비활성화') {
+      heading.classList.remove('expand');
+      heading.classList.add('shrink');
+    } else {
+      // "활성화" 텍스트였으면 → 원상복귀 애니메이션
+      heading.classList.remove('shrink');
+      heading.classList.add('expand');
+    }
+  }
+
+  // 기존 토글 핸들러 안에 호출만 추가해 주세요
+  document.getElementById('barrier-toggle').addEventListener('click', function() {
+    toggleHeadingAnim(this, 'barrier-container');
+    /* --- 여기에 기존 비활성화⇄활성화 토글 로직이 이어집니다 --- */
+  });
+
+  document.getElementById('fieldboss-toggle').addEventListener('click', function() {
+    toggleHeadingAnim(this, 'fieldboss-container');
+    /* --- 기존 토글 로직 계속 --- */
+  });
+</script>
 </body>
 </html>

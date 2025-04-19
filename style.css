@@ -49,7 +49,7 @@ html, body {
 
 /* 알람 박스 스타일 */
 .alarm-container {
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.7);
     border: 1px solid rgba(255, 255, 255, 0.6); /* 경계선 표시 */
     border-radius: 9px;
     text-align: center;
@@ -77,10 +77,7 @@ button {
     align-items: center;         /* 수직 중앙 정렬 */
     justify-content: center;     /* 수평 중앙 정렬 */
     padding: 7px 16px;
-    background: linear-gradient(45deg, #2ecc71);
     color: #ffffff;
-    border: 1px solid rgba(183, 253, 181, 0.5);
-    border-radius: 11px;
     cursor: pointer;
     font-family: 'GmarketLight', Arial, sans-serif;
     font-size: 14px;
@@ -195,6 +192,7 @@ button:active {
     background: transparent !important;
     border: none !important;
     box-shadow: none !important;
+    margin: 0 15px;
 }
 /* 라벨 아래 간격 */
 .m_settings_label {
@@ -225,4 +223,21 @@ button:active {
 }
 .toggle-container {
   margin-top: 2px !important; /* 기존 10px → 4px로 줄임 */
+}
+/* 1) h2 기본 트랜지션 설정 */
+#barrier-container h2,
+#fieldboss-container h2 {
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+/* 2) shrink 클래스: 축소 + 위로 이동 */
+h2.shrink {
+  transform: scale(0.6) translateY(-10px);
+  opacity: 0.8;
+}
+
+/* 3) expand 클래스: 원상복귀 (사실 생략해도 기본 상태로 돌아갑니다) */
+h2.expand {
+  transform: scale(1) translateY(0);
+  opacity: 1;
 }
