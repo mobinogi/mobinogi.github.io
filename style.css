@@ -96,9 +96,10 @@ button {
     align-items: center;         /* 수직 중앙 정렬 */
     justify-content: center;     /* 수평 중앙 정렬 */
     padding: 7px 16px;
-    color: #ffffff;
     cursor: pointer;
-    font-family: 'GmarketLight', Arial, sans-serif;
+    font-family: 'GmarketLight', Arial, sans-serif !important;
+    font-weight: normal !important;
+    color: rgba(255, 255, 255, 0.8) !important;
     font-size: 14px;
     line-height: 13px;
     transition: transform 0.1s, background 0.3s;
