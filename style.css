@@ -218,3 +218,6 @@ button:active {
     font-size: 14px !important;
   }
 }
+ .alarm-container {
+   padding-bottom: 10px !important;
+}
