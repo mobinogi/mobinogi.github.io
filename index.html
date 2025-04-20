@@ -1,5 +1,10 @@
 <!DOCTYPE html>
 <html lang="ko">
+<script>
+  src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJ+YpG2pILi2V/bBj1i9vLj93/QOc+vlO5YBY="
+  crossorigin="anonymous">
+</script>
 <head>
   <link rel="icon"            href="32x32.ico"           type="image/x-icon">
   <link rel="icon"            href="32x32.png" sizes="32x32" type="image/png">
@@ -12,9 +17,15 @@
   <link rel="stylesheet" href="css/jquery.mswitch.css">
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="button.css">
+  <link rel="stylesheet" href="bg.css">
 </head>
 <body>
   <!-- 로고: 원본 크기로 표시 (img 태그 사용) -->
+  <section class="wrapper">
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>
+  </section>
   <img class="logo" src="logo.png" alt="Logo">
   
   <!-- 결계 알람 섹션 -->
@@ -25,7 +36,7 @@
       <button id="barrier-toggle" class="confetti-button">활성화</button>
     </div>
     <!-- 옵션 영역: mSwitch 데모 구조와 동일하게 한 행에 두 스위치 -->
-    <div id="barrier-options" style="display:none; margin-top:10px;">
+    <div id="barrier-options" class="options-panel">
       <div class="m_settings_row">
         <div class="m_settings_table" style="margin:0 auto;">
           <!-- 소리 옵션: 한 개 셀에 라벨+스위치 -->
@@ -78,7 +89,6 @@
     <p>© 2024 Riverize. All Rights Reserved.</p>
     <p>상단 로고 및 일부 이미지의 저작권은 해당 원작자에게 있습니다.</p>
   </footer>
-  
   <!-- jQuery (필수) -->
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
   <!-- mSwitch 플러그인 JS -->
@@ -174,7 +184,8 @@
       ga('create', 'UA-46156385-1', 'cssscript.com');
       ga('send', 'pageview');
     
-    </script>    
-
+    </script>  
+      <script src="barrier.js"></script>
+  <script src="fieldboss.js"></script>  
 </body>
 </html>

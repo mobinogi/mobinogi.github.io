@@ -6,18 +6,10 @@ html, body {
   overflow-y: auto;
   margin: 0;
   font-family: '맑은 고딕', Arial, sans-serif !important;
-
-  /* 기존 배경 설정은 모두 제거 */
-  background: none;
-  
-  /* flex 레이아웃 유지 */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  
-  /* z-index: -1 은 제거하세요 */
+  text-align: center;
+  overflow: hidden;
 }
+
 
 /* 2) 고정 배경용 가상요소 */
 body {
@@ -27,8 +19,8 @@ body::before {
   content: "";
   position: fixed;      /* 뷰포트에 고정 */
   top: 0; left: 0;
-  width: 100%; height: 100%;
-  background-image: url('back.png');
+  width: 100vw;
+  height: 100vh;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -68,8 +60,14 @@ body::before {
 /* 알람 박스 스타일 */
 .alarm-container {
     padding-top: 6px;
-    background-color: rgba(255, 255, 255, 0.8);
-    border: 1.5px solid rgba(255, 255, 255, 1.0); /* 경계선 표시 */
+    backdrop-filter: blur(10px);
+    border: 1px solid #ffffffdc;
+    border-radius: 10px;
+    padding: 10px;
+    width: 200px;
+    background-color: #ffffffc5;
+    backdrop-filter: blur(10px);
+    opacity: 0.7;
     border-radius: 9px;
     text-align: center;
     width: 230px;
@@ -93,6 +91,7 @@ body::before {
 
 /* 활성화/비활성화 토글 버튼 스타일 */
 button {
+    display: flex;
     align-items: center;         /* 수직 중앙 정렬 */
     justify-content: center;     /* 수평 중앙 정렬 */
     padding: 7px 16px;
@@ -100,7 +99,6 @@ button {
     font-family: 'GmarketLight', Arial, sans-serif !important;
     font-weight: normal !important;
     color: rgba(255, 255, 255, 0.8) !important;
-    font-size: 14px;
     line-height: 13px;
     transition: transform 0.1s, background 0.3s;
     margin-top: 10px;
@@ -113,6 +111,7 @@ button:active {
 .alarm-container::before {
     content: "";
     position: absolute;
+    filter: blur(10px);
     bottom: 0;
     left: 0;
     width: 80px;         /* 그라데이션 범위(원하는대로 조절) */
@@ -261,4 +260,21 @@ button:active {
 .shrink {
   transform: scale(0.8) translateY(-10px);
   opacity: 0.8;
+}
+
+.options-panel {
+  display: none;
+  margin-top: 10px;
+}
+/* .logo 는 block인 상태에서 가로 중앙 정렬 */
+.logo {
+  display: block;
+  margin: 20px auto 40px;
+  filter: invert(100%);
+}
+
+/* 알람 박스(.alarm-container)도 auto 마진으로 가운데로 */
+.alarm-container {
+  /* 기존 margin-bottom:30px; 대신 아래처럼 */
+  margin: 0 auto 30px;
 }
