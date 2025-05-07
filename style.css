@@ -264,7 +264,7 @@ button:active {
   max-height: 0;
   opacity: 0;
   overflow: hidden;
-  transition: max-height 0.4s ease, opacity 0.4s ease;
+  transition: max-height 0.6s ease-in-out, opacity 0.4s ease-in-out;
   margin-top: 10px;
 }
 .options-panel.expanded {
