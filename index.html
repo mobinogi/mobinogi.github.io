@@ -102,7 +102,6 @@
   
   <!-- 알람 스크립트 -->
   <script src="barrier.js"></script>
-  <script src="fieldboss.js"></script>
   <script>
     function toggleHeading(containerId) {
       const h2 = document.querySelector(`#${containerId} h2`);
@@ -120,13 +119,6 @@
   document.getElementById('barrier-options')
           .classList.toggle('expanded');
 });
-  
-    document.getElementById('fieldboss-toggle').addEventListener('click', function() {
-      toggleHeading('fieldboss-container');
-      this.innerText = this.innerText.trim() === '비활성화' ? '활성화' : '비활성화';
-      const opts = document.getElementById('fieldboss-options');
-      opts.style.display = opts.style.display === 'none' ? 'block' : 'none';
-    });
   </script>
   <script>
     var animateButton = function(e) {
@@ -157,7 +149,6 @@
       ga('send', 'pageview');
     
     </script>  
-      <script src="barrier.js"></script>
-  <script src="fieldboss.js"></script>  
+      <script src="barrier.js"></script>  
 </body>
 </html>
