@@ -2,6 +2,15 @@
 <html lang="ko">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
 <head>
+  <!-- ① 문자셋 선언 (꼭 최상단!) -->
+  <meta charset="UTF-8">
+
+  <!-- ② 뷰포트 설정 (모바일 대응) -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- ③ CSP 정책 (unsafe-eval 허용) -->
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self' 'unsafe-eval';">
   <link rel="icon"            href="32x32.ico"           type="image/x-icon">
   <link rel="icon"            href="32x32.png" sizes="32x32" type="image/png">
   <link rel="apple-touch-icon" sizes="180x180" href="180x180.png">
