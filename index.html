@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
-<script>
+<script
   src="https://code.jquery.com/jquery-3.6.0.min.js"
   integrity="sha256-/xUj+3OJ+YpG2pILi2V/bBj1i9vLj93/QOc+vlO5YBY="
   crossorigin="anonymous">
@@ -138,16 +138,16 @@
     }
   
     document.getElementById('barrier-toggle').addEventListener('click', function() {
-      // 1) 제목 애니메이션 (첫 클릭부터 확실히 작동)
-      toggleHeading('barrier-container');
-  
-      // 2) 버튼 텍스트 토글
-      this.innerText = this.innerText.trim() === '비활성화' ? '활성화' : '비활성화';
-  
-      // 3) 옵션 보이기/숨기기
-      const opts = document.getElementById('barrier-options');
-      opts.style.display = opts.style.display === 'none' ? 'block' : 'none';
-    });
+  // 1) 제목 Shrink/Expand 애니메이션 호출
+  toggleHeading('barrier-container');
+
+  // 2) 버튼 텍스트 토글
+  this.innerText = this.innerText.trim() === '비활성화' ? '활성화' : '비활성화';
+
+  // 3) 옵션 영역에 expanded 클래스 토글
+  document.getElementById('barrier-options')
+          .classList.toggle('expanded');
+});
   
     document.getElementById('fieldboss-toggle').addEventListener('click', function() {
       toggleHeading('fieldboss-container');
