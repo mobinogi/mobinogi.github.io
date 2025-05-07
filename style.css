@@ -117,7 +117,6 @@ button:active {
     width: 80px;         /* 그라데이션 범위(원하는대로 조절) */
     height: 80px;
     pointer-events: none; /* 마우스 이벤트 비활성화 */
-    );
 }
 
 /* 오른쪽 하단 모서리에 그라데이션 */
@@ -129,7 +128,6 @@ button:active {
     width: 80px;
     height: 80px;
     pointer-events: none;
-    );
 }
 /* Footer 스타일 */
 .footer {
