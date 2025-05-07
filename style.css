@@ -263,8 +263,15 @@ button:active {
 }
 
 .options-panel {
-  display: none;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, opacity 0.4s ease;
   margin-top: 10px;
+}
+.options-panel.expanded {
+  max-height: 200px;   /* 옵션 내용이 완전히 보일 정도로 적당히 */
+  opacity: 1;
 }
 /* .logo 는 block인 상태에서 가로 중앙 정렬 */
 .logo {
